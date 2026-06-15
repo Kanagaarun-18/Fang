@@ -1,4 +1,9 @@
 # FANG 🐍🛡️
+
+## 🔗 Live Demo
+
+👉 **[Launch FANG](https://fang-q3da.onrender.com/)**
+
 ### AI-Powered Phishing Analysis & Human Risk Intelligence Platform
 
 FANG (Fear Analysis & Neuropsychological Guard) is a cybersecurity-focused web application that detects phishing attempts, analyzes psychological manipulation techniques used by attackers, evaluates human vulnerability, and provides AI-powered threat intelligence reports.
