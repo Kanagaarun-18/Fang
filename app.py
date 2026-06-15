@@ -31,21 +31,21 @@ def analyze(message: str = Form(...)):
     return detect_phishing(message)
 
 
-@app.post("/analyze-image")
-async def analyze_image(file: UploadFile = File(...)):
+# @app.post("/analyze-image")
+# async def analyze_image(file: UploadFile = File(...)):
 
-    filepath = f"uploads/{file.filename}"
+#     filepath = f"uploads/{file.filename}"
 
-    with open(filepath, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+#     with open(filepath, "wb") as buffer:
+#         shutil.copyfileobj(file.file, buffer)
 
-    text = extract_text(filepath)
+#     text = extract_text(filepath)
 
-    result = detect_phishing(text)
+#     result = detect_phishing(text)
 
-    result["extracted_text"] = text
+#     result["extracted_text"] = text
 
-    return result
+#     return result
 
 @app.get("/challenge")
 def challenge():

@@ -1,10 +1,10 @@
-import easyocr
+# import easyocr
 
-reader = easyocr.Reader(['en'])
+# reader = easyocr.Reader(['en'])
 
-def extract_text(image_path):
-    result = reader.readtext(image_path)
+# def extract_text(image_path):
+#     result = reader.readtext(image_path)
 
-    text = " ".join([item[1] for item in result])
+#     text = " ".join([item[1] for item in result])
 
-    return text
+#     return text

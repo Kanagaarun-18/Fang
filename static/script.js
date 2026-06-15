@@ -42,38 +42,38 @@ async function analyzeMessage() {
     `;
 }
 
-async function analyzeImage() {
+// async function analyzeImage() {
 
-    const file =
-        document.getElementById("imageFile").files[0];
+//     const file =
+//         document.getElementById("imageFile").files[0];
 
-    if (!file) {
-        alert("Select an image first");
-        return;
-    }
+//     if (!file) {
+//         alert("Select an image first");
+//         return;
+//     }
 
-    const formData = new FormData();
-    formData.append("file", file);
+//     const formData = new FormData();
+//     formData.append("file", file);
 
-    const response =
-        await fetch("/analyze-image", {
-            method: "POST",
-            body: formData
-        });
+//     const response =
+//         await fetch("/analyze-image", {
+//             method: "POST",
+//             body: formData
+//         });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    renderThreatAnalysis(data);
+//     renderThreatAnalysis(data);
 
-    document.getElementById(
-        "aiExplanation"
-    ).innerHTML = `
-        <h2>Extracted Text</h2>
-        <div class="extracted-text">
-            ${data.extracted_text}
-        </div>
-    `;
-}
+//     document.getElementById(
+//         "aiExplanation"
+//     ).innerHTML = `
+//         <h2>Extracted Text</h2>
+//         <div class="extracted-text">
+//             ${data.extracted_text}
+//         </div>
+//     `;
+// }
 
 function renderThreatAnalysis(data){
 
