@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FANG</title>
+
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -16,59 +19,97 @@
         </div>
 
         <div class="card">
+
             <textarea
                 id="message"
-                placeholder="Paste Email or SMS here..."
+                placeholder="Paste Email, SMS, Banking Alert, UPI Message or Suspicious Communication Here..."
             ></textarea>
-
-            <br>
-
-            <!-- <input
-                type="file"
-                id="imageFile"
-                accept="image/*"
-            /> -->
 
             <br><br>
 
             <button onclick="analyzeMessage()">
-                Analyze
+                Analyze Threat
             </button>
-
-            <!-- <button onclick="analyzeImage()">
-                Analyze Screenshot
-            </button> -->
 
             <div id="result"></div>
 
             <div id="aiExplanation"></div>
 
         </div>
-        <hr>
 
-        <h2>Challenge Arena</h2>
+        <!-- Challenge Banner -->
 
-        <div id="challengeBox">
+        <div class="challenge-banner">
 
-            <p id="challengeQuestion">
-                Click Start Challenge
+            <h3>
+                Think you can protect yourself from phishing attacks?
+            </h3>
+
+            <p>
+                Test your awareness against real-world phishing scenarios
+                and see whether you would fall for modern social engineering tactics.
             </p>
 
-            <button onclick="loadChallenge()">
-                Start Challenge
+            <button onclick="openChallenge()">
+                Launch Challenge
             </button>
 
-            <button onclick="submitAnswer('safe')">
-                Safe
-            </button>
+        </div>
 
-            <button onclick="submitAnswer('phishing')">
-                Phishing
-            </button>
+    </div>
+
+    <!-- Challenge Modal -->
+
+    <div id="challengeModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-btn"
+                  onclick="closeChallenge()">
+                &times;
+            </span>
+
+            <h2>FANG Challenge Arena</h2>
+
+            <div class="challenge-progress">
+
+                <span id="challengeCounter">
+                    1 / 30
+                </span>
+
+            </div>
+
+            <div id="challengeQuestionContainer">
+
+                <p id="challengeQuestion">
+                    Loading...
+                </p>
+
+            </div>
+
+            <div id="answerButtons">
+
+                <button
+                    class="safeBtn"
+                    onclick="submitAnswer('safe')">
+
+                    SAFE
+
+                </button>
+
+                <button
+                    class="phishingBtn"
+                    onclick="submitAnswer('phishing')">
+
+                    PHISHING
+
+                </button>
+
+            </div>
 
             <div id="challengeResult"></div>
 
-</div>
+        </div>
 
     </div>
 

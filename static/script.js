@@ -1,7 +1,3 @@
-let currentAnswer = null;
-let score = 0;
-let total = 0;
-
 async function analyzeMessage() {
 
     const message =
@@ -132,7 +128,34 @@ function renderThreatAnalysis(data){
     `;
 }
 
-async function loadChallenge() {
+let currentAnswer = null;
+
+let score = 0;
+
+let questionCount = 0;
+
+const TOTAL_QUESTIONS = 30;
+
+function openChallenge(){
+
+    document
+        .getElementById("challengeModal")
+        .style.display = "block";
+
+    score = 0;
+    questionCount = 0;
+
+    loadChallenge();
+}
+
+function closeChallenge(){
+
+    document
+        .getElementById("challengeModal")
+        .style.display = "none";
+}
+
+async function loadChallenge(){
 
     const response =
         await fetch("/challenge");
@@ -140,38 +163,111 @@ async function loadChallenge() {
     const data =
         await response.json();
 
-    document.getElementById(
-        "challengeQuestion"
-    ).innerText = data.text;
-
     currentAnswer = data.answer;
+
+    document
+        .getElementById("challengeQuestion")
+        .innerText = data.text;
+
+    document
+        .getElementById("challengeCounter")
+        .innerText =
+            `${questionCount + 1} / ${TOTAL_QUESTIONS}`;
+
+    document
+        .getElementById("challengeResult")
+        .innerHTML = "";
 }
 
-function submitAnswer(answer) {
+function submitAnswer(answer){
 
-    if (!currentAnswer) {
-        alert("Load a question first");
-        return;
-    }
+    questionCount++;
 
-    total++;
+    const resultBox =
+        document.getElementById(
+            "challengeResult"
+        );
 
-    if (answer === currentAnswer) {
+    if(answer === currentAnswer){
 
         score++;
 
-        document.getElementById(
-            "challengeResult"
-        ).innerHTML =
-            `✅ Correct (${score}/${total})`;
+        resultBox.innerHTML =
+            "✅ Correct";
 
-    } else {
+        resultBox.style.color =
+            "#4caf50";
 
-        document.getElementById(
-            "challengeResult"
-        ).innerHTML =
-            `❌ Incorrect (${score}/${total})`;
+    }else{
+
+        resultBox.innerHTML =
+            "❌ Incorrect";
+
+        resultBox.style.color =
+            "#e53935";
     }
 
-    currentAnswer = null;
+    if(questionCount >= TOTAL_QUESTIONS){
+
+        setTimeout(showFinalResult,1500);
+
+    }else{
+
+        setTimeout(loadChallenge,1500);
+    }
 }
+
+function showFinalResult(){
+
+    let rank = "Beginner";
+
+    const percent =
+        (score/TOTAL_QUESTIONS)*100;
+
+    if(percent >= 90)
+        rank = "Threat Hunter 🏆";
+
+    else if(percent >= 75)
+        rank = "Security Analyst 🛡️";
+
+    else if(percent >= 50)
+        rank = "Cyber Aware 👁️";
+
+    document
+        .getElementById("challengeQuestion")
+        .innerHTML = `
+
+        <h2>Training Complete!</h2>
+
+        <p>
+            Score:
+            ${score}/${TOTAL_QUESTIONS}
+        </p>
+
+        <p>
+            Rank:
+            ${rank}
+        </p>
+
+        <br>
+
+        <p>
+            You have completed all available
+            challenges.
+        </p>
+
+        <button onclick="openChallenge()">
+            Train Again
+        </button>
+        `;
+
+    document
+        .getElementById("answerButtons")
+        .style.display = "none";
+
+    document
+        .getElementById("challengeResult")
+        .innerHTML = "";
+}
+
+
