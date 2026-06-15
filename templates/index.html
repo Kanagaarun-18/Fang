@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FANG</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>FANG</h1>
+            <p>
+                AI-Powered Phishing Analysis & Human Risk Intelligence
+            </p>
+        </div>
+
+        <div class="card">
+            <textarea
+                id="message"
+                placeholder="Paste Email or SMS here..."
+            ></textarea>
+
+            <br>
+
+            <input
+                type="file"
+                id="imageFile"
+                accept="image/*"
+            />
+
+            <br><br>
+
+            <button onclick="analyzeMessage()">
+                Analyze
+            </button>
+
+            <button onclick="analyzeImage()">
+                Analyze Screenshot
+            </button>
+
+            <div id="result"></div>
+
+            <div id="aiExplanation"></div>
+
+        </div>
+        <hr>
+
+        <h2>Challenge Arena</h2>
+
+        <div id="challengeBox">
+
+            <p id="challengeQuestion">
+                Click Start Challenge
+            </p>
+
+            <button onclick="loadChallenge()">
+                Start Challenge
+            </button>
+
+            <button onclick="submitAnswer('safe')">
+                Safe
+            </button>
+
+            <button onclick="submitAnswer('phishing')">
+                Phishing
+            </button>
+
+            <div id="challengeResult"></div>
+
+</div>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
