@@ -3,8 +3,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from detector import detect_phishing
 from fastapi import Form
-from fastapi import UploadFile, File
-from ocr import extract_text
+#from fastapi import UploadFile, File
+#from ocr import extract_text
 import shutil
 from challenge import get_random_question
 from ai_explainer import explain_message
